@@ -1,11 +1,11 @@
 <?php
 
-namespace TenthPres {
+namespace Tenth {
 
 	use GuzzleHttp\Client;
 	use GuzzleHttp\Cookie\CookieJar;
 	use GuzzleHttp\Cookie\SetCookie;
-	use TenthPres\AccessLogin\AccessPerson;
+	use Tenth\AccessLogin\AccessPerson;
 
 	class AccessLogin {
 		/**

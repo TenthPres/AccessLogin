@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use TenthPres\AccessLogin;
+use Tenth\AccessLogin;
 
 
 class AccessLoginBadDataTests extends TestCase {

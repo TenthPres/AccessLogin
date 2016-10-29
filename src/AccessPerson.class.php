@@ -1,12 +1,12 @@
 <?php
 
-namespace TenthPres\AccessLogin {
+namespace Tenth\AccessLogin {
 
 	/**
 	 * Used as a container for the return objects of the login function.
 	 *
 	 * Class AccessPerson
-	 * @package TenthPres\AccessLogin
+	 * @package Tenth\AccessLogin
 	 */
 	class AccessPerson
 	{

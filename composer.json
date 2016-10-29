@@ -1,10 +1,10 @@
 {
-  "name": "tenth-pres/access-login",
+  "name": "tenth/access-login",
   "type": "library",
   "description": "Authenticate and identify church members and regular attenders by their ACS credentials.",
   "minimum-stability": "dev",
   "keywords": ["Church", "Church Membership", "Authentication"],
-  "homepage": "https://github.com/tenthpres/AccessLogin",
+  "homepage": "https://github.com/TenthPres/AccessLogin",
   "license": "MIT",
   "authors": [
     {
@@ -14,11 +14,14 @@
     }
   ],
   "repositories": [
-
+    {
+      "type": "vcs",
+      "url": "https://github.com/TenthPres/AccessLogin"
+    }
   ],
   "autoload": {
     "psr-4": {
-      "TenthPres\\": "src/"
+      "Tenth\\": "src/"
     }
   },
   "archive": {
