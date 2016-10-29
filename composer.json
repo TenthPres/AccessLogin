@@ -1,0 +1,33 @@
+{
+  "name": "tenth-pres/access-login",
+  "type": "library",
+  "description": "Authenticate and identify church members and regular attenders by their ACS credentials.",
+  "minimum-stability": "dev",
+  "keywords": ["Church", "Church Membership", "Authentication"],
+  "homepage": "https://github.com/tenthpres/AccessLogin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "James Kurtz",
+      "email": "jkrrv@jkrrv.org",
+      "role": "Developer"
+    }
+  ],
+  "repositories": [
+
+  ],
+  "autoload": {
+    "psr-4": {
+      "TenthPres\\": "src/"
+    }
+  },
+  "archive": {
+    "exclude": [".idea/"]
+  },
+  "require": {
+    "guzzlehttp/guzzle": "^6.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.5.*"
+  }
+}
