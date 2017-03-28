@@ -9,3 +9,5 @@ composer.lock
 **.iws
 
 .idea/deployment.xml
+
+/index.php
