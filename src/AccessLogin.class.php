@@ -141,7 +141,7 @@ namespace Tenth {
 				foreach ($r as &$person) {
 					foreach ($matches[2] as $k => $name) {
 						if ($name === $person->FullName) {
-							$person->IndividualId = $matches[1][$k];
+							$person->IndividualId = intval($matches[1][$k]);
 						}
 					}
 				}

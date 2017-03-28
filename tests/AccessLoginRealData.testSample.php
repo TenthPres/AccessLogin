@@ -4,6 +4,7 @@ use PHPUnit\Framework\TestCase;
 use Tenth\AccessLogin;
 
 
+/** @noinspection PhpUndefinedClassInspection */
 class AccessLoginRealDataTests extends TestCase {
 	private $__userA;
 	private $__userB;
