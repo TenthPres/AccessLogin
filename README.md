@@ -3,7 +3,7 @@ Access Login
 
 This library was originally created for integration into our public WiFi system, allowing credentialed members and regular attenders to gain WiFi Access.
 
-This library has none of the WiFi connecting features, but is simply a wrapped for interfacing with ACS Church software.  By passing the library a user email and password, the library then authenticates against the ACS web server, and returns basic personal information through the library. 
+This library has none of the WiFi connecting features, but is simply a wrapper for interfacing with ACS Church software.  By passing the library a user email and password, the library then authenticates against the ACS web server, and returns basic personal information through the library. 
 
 The use of this library assumes that your organization is also using ACS Church Management software.  This library won't work without it.  
 
@@ -35,12 +35,6 @@ So, for the above example, the value of `$users` might be something like:
 	      public 'SiteNumber' => string '91460' (length=5)
 	      public 'SiteName' => string 'Tenth Presbyterian Church' (length=25)
 
-
-### Why You Should Use Basic Requests Instead of Detailed Requests
-
-For Basic Requests, this library uses a particular query to ACS servers which is very quick and efficient, but only provides the limited information seen above.  However, considering that the application designer will already have the user email address, this information should be sufficient to disambiguate between most (admittedly, not all) individuals. 
-
-If, however, this information is insufficient, you may find that Detailed Requests, described below, better meet your needs.
 
 ## Detailed Requests
 
@@ -75,5 +69,12 @@ For the above example, the value of `$users` might be something like:
 	      public 'UserName' => string 'JaneDoe' (length=7)
 	      public 'SiteNumber' => string '91460' (length=5)
 	      public 'SiteName' => string 'Tenth Presbyterian Church' (length=25)
+
+
+### Why You Should Use Basic Requests Instead of Detailed Requests
+
+For Basic Requests, this library uses a particular query to ACS servers which is very quick and efficient, but only provides the limited information seen above.  However, considering that the application designer will already have the user email address, this information should be sufficient to disambiguate between most (admittedly, not all) individuals. 
+
+If, however, this information is insufficient, you may find that Detailed Requests, described below, better meet your needs.
 
 
