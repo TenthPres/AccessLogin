@@ -36,19 +36,13 @@ So, for the above example, the value of `$users` might be something like:
 	      public 'SiteName' => string 'Tenth Presbyterian Church' (length=25)
 
 
-### Why You Should Use Basic Requests Instead of Detailed Requests
-
-For Basic Requests, this library uses a particular query to ACS servers which is very quick and efficient, but only provides the limited information seen above.  However, considering that the application designer will already have the user email address, this information should be sufficient to disambiguate between most (admittedly, not all) individuals. 
-
-If, however, this information is insufficient, you may find that Detailed Requests, described below, better meet your needs.
-
 ## Detailed Requests
 
 In the event that you need a unique identifier, you may want to use a Detailed Request, instead of the Basic Request.  
 
 Detailed Requests do everything in a Basic Request, but then also load the profile landing page that the user would see when logging in themselves.  
 
-**Detailed Requests are dramatically more resource-intensive to process and take dramatically longer to load** than Basic Requests.  Thus, use Basic Requests when possible. 
+**Detailed Requests are dramatically more resource-intensive to process and take dramatically longer to load** than Basic Requests.  Thus, use Basic Requests when possible.  See explanation below for a more thorough explanation. 
 
 To perform a Detailed Request, add the `detailed` parameter to the `\Tenth\AccessLogin::login()` call, like this:
 
@@ -64,7 +58,7 @@ For the above example, the value of `$users` might be something like:
 	  0 => 
 	    object(Tenth\AccessLogin\AccessPersonDetailed)[39]
 	      protected '_hasLoadedProfile' => boolean false
-          public 'IndividualId' => int 17022
+	      public 'IndividualId' => int 17022
 	      public 'FullName' => string 'John Doe' (length=8)
 	      public 'UserName' => string 'JohnDoe' (length=7)
 	      public 'SiteNumber' => string '91460' (length=5)
@@ -72,11 +66,20 @@ For the above example, the value of `$users` might be something like:
 	  1 => 
 	    object(Tenth\AccessLogin\AccessPersonDetailed)[40]
 	      protected '_hasLoadedProfile' => boolean false
-          public 'IndividualId' => int 17023
+	      public 'IndividualId' => int 17023
 	      public 'FullName' => string 'Jane Doe' (length=8)
 	      public 'UserName' => string 'JaneDoe' (length=7)
 	      public 'SiteNumber' => string '91460' (length=5)
 	      public 'SiteName' => string 'Tenth Presbyterian Church' (length=25)
+
+
+### Why You Should Use Basic Requests Instead of Detailed Requests
+
+Data is sexy.  We get it.  We tend to crave maximal data.  However, in some cases, those data comes at a cost.  
+
+For Basic Requests, this library uses a particular query to ACS servers which is very quick and efficient, but only provides the limited information provided in AccessPerson objects.  Since the application designer also has the user's email addres (required to submit the request), there may already be enough information in-hand to disambiguate between most individuals.  
+
+In some cases, though, a unique identifier, or other profile information, may be necessary.  This is why Detailed Requests exist.  They provide an `IndividualId` which, when combined with the `SiteNumber` provide a unique identifier.  Also, in future releases, functions will be added to scrape more detailed contact info off of the user's profile page, making much more personal information available. 
 
 
 ## Info for Contributors
