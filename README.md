@@ -3,11 +3,11 @@ Access Login
 
 This library was originally created for integration into our public WiFi system, allowing credentialed members and regular attenders to gain WiFi Access.
 
-This library has none of the WiFi connecting features, but is simply a wrapped for interfacing with ACS Church software.  By passing the library a user email and password, the library then authenticates against the ACS web server, and returns basic personal information through the library. 
+This library has none of the WiFi connecting features, but is simply a wrapper for interfacing with ACS Church software.  By passing the library a user email and password, the library then authenticates against the ACS web server, and returns basic personal information through the library. 
 
-The use of this library assumes that your organization is also using ACS Church Management software.  This library won't work without it.  
+The use of this library assumes that your organization is using ACS Church Management software.  This library won't work without it.  
 
-Other than our customer relationship with ACS, we are not affiliated, and this library is not endorsed by them in any way.  
+Other than our customer relationship with ACS, we are not affiliated, and this library is not endorsed or supported by them in any way.  
 
 ## Basic Requests
 
@@ -54,7 +54,9 @@ To perform a Detailed Request, add the `detailed` parameter to the `\Tenth\Acces
 
 	$users = \Tenth\AccessLogin::login($userEmail, $userPassword, true);
 	
-With that, `$users` contains an array of AccessPersonDetailed objects, corresponding to people in that family who share the email address.  These are the same as the AccessPerson objects returned from Basic Requests, with the addition of an `IndividualId` attribute corresponding to the individual's unique ID in the ACS database, as well as a private `_hasLoadedProfile` attribute indicating whether the user's profile page has been loaded and parsed.  There is not yet support for the loading and parsing of individual profile pages. 
+With that, `$users` contains an array of AccessPersonDetailed objects, corresponding to people in that family who share the email address.  These are the same as the AccessPerson objects returned from Basic Requests, with the addition of an `IndividualId` attribute corresponding to the individual's unique ID in the ACS database, as well as a private `_hasLoadedProfile` attribute indicating whether the user's profile page has been loaded and parsed.  
+
+There is not yet support for the loading and parsing of individual profile pages, but this is expected in future revisions. 
 
 For the above example, the value of `$users` might be something like:
 
@@ -68,7 +70,7 @@ For the above example, the value of `$users` might be something like:
 	      public 'SiteNumber' => string '91460' (length=5)
 	      public 'SiteName' => string 'Tenth Presbyterian Church' (length=25)
 	  1 => 
-	    object(Tenth\AccessLogin\AccessPerson)[40]
+	    object(Tenth\AccessLogin\AccessPersonDetailed)[40]
 	      protected '_hasLoadedProfile' => boolean false
           public 'IndividualId' => int 17023
 	      public 'FullName' => string 'Jane Doe' (length=8)
@@ -77,3 +79,14 @@ For the above example, the value of `$users` might be something like:
 	      public 'SiteName' => string 'Tenth Presbyterian Church' (length=25)
 
 
+## Info for Contributors
+
+If you wish to contribute to this project, thank you!  Be sure to add yourself to the `authors` section of composer.json in your first pull request. 
+
+
+### Test Coverage
+Unit tests cover 100% of lines in src *IF* you have compliant data.  
+
+In order to have full coverage, you'll need:
+ - a set of valid credentials for an ACS user.
+ - credentials for an ACS user account who is part of a family where multiple people have the same name.  e.g. John Smith and John Smith Jr.  Ideally, that 'Jr.' part would be omitted such that a true ambiguity clearly exists. 
