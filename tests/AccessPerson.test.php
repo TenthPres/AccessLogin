@@ -1,5 +1,7 @@
 <?php
 
+namespace Tenth\AccessLogin\Tests;
+
 use PHPUnit\Framework\TestCase;
 use Tenth\AccessLogin\AccessPerson;
 

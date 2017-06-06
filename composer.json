@@ -21,11 +21,15 @@
   ],
   "autoload": {
     "psr-4": {
-      "Tenth\\": "src/"
+      "Tenth\\": "src/",
+      "Tenth\\AccessLogin\\": "src/"
     }
   },
   "archive": {
-    "exclude": [".idea/"]
+    "exclude": [
+      ".idea/",
+      "tests/AccessLoginRealData.test.php"
+    ]
   },
   "require": {
     "guzzlehttp/guzzle": "^6.2"
