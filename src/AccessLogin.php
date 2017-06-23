@@ -10,6 +10,24 @@ namespace Tenth {
 	use Tenth\AccessLogin\AccessException;
 
 	class AccessLogin {
+
+		public static function getClient($site)
+		{
+			$jar = new CookieJar(false, [
+				new SetCookie([
+					'Name' => 'SiteNumber',
+					'Value' => 'SiteID=' . $site,
+					'Domain' => 'secure.accessacs.com',
+					'Path' => '/',
+					'Max-Age' => null,
+					'Expires' => null,
+					'Secure' => false,
+					'Discard' => false,
+					'HttpOnly' => false])
+			]);
+
+			return new Client(['cookies' => $jar]);
+		}
 		/**
 		 * The login function.  Essentially wraps the web client's request to https://secure.accessacs.com/access/login.ashx
 		 *
@@ -26,24 +44,9 @@ namespace Tenth {
 			if (!filter_var($email, FILTER_VALIDATE_EMAIL))
 				return false;
 
-			$jar = new CookieJar(false, [
-				new SetCookie([ // probably not necessary, but whatev.
-					'Name' => 'SiteNumber',
-					'Value' => 'SiteID=' . $site,
-					'Domain' => 'secure.accessacs.com',
-					'Path' => '/',
-					'Max-Age' => null,
-					'Expires' => null,
-					'Secure' => false,
-					'Discard' => false,
-					'HttpOnly' => false])
-			]);
+			$client = self::getClient($site);
 
-			$client = new Client(['cookies' => $jar]);
-
-			$loginPage = $client->request('GET', 'https://secure.accessacs.com/access/memberlogin.aspx?sn=' . $site, [
-				'cookies' => $jar
-			]);
+			$loginPage = $client->request('GET', 'https://secure.accessacs.com/access/memberlogin.aspx?sn=' . $site);
 
 			$jsonLogin = $client->request('POST', 'https://secure.accessacs.com/access/login.ashx', [
 				'form_params' => [
@@ -51,8 +54,7 @@ namespace Tenth {
 					'pwd' => $password,
 					'site' => $site
 				],
-				'delay' => 100,
-				'cookies' => $jar
+				'delay' => 100
 			]);
 			$body = $jsonLogin->getBody();
 
@@ -76,7 +78,7 @@ namespace Tenth {
 				$r = [];
 
 				foreach ($json as $j) {
-					$r[] = new AccessPersonDetailed($j);
+					$r[] = new AccessPersonDetailed($j, $client);
 				}
 
 				// parse out needed values from response
@@ -116,14 +118,12 @@ namespace Tenth {
 				// process second login page (the one after the XHR request)
 				$client->request('POST', 'https://secure.accessacs.com/access/memberlogin.aspx?sn=' . $site, [
 					'form_params' => $params,
-					'delay' => 100,
-					'cookies' => $jar
+					'delay' => 50
 				]);
 
 				// load default profile page
 				$profilePage = $client->request('GET', 'https://secure.accessacs.com/access/people/viewperson.aspx?src=menu', [
-					'delay' => 200,
-					'cookies' => $jar
+					'delay' => 50
 				]);
 
 				$profileBody = $profilePage->getBody();

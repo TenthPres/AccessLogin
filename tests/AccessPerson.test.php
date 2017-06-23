@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 use Tenth\AccessLogin\AccessPerson;
 
 
-class AccessPersonBadDataTests extends TestCase
+class AccessPersonFakeDataTests extends TestCase
 {
 	private static $__personObject = null;
 	private static function getPersonObject() {
