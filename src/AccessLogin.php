@@ -28,6 +28,7 @@ namespace Tenth {
 
 			return new Client(['cookies' => $jar]);
 		}
+
 		/**
 		 * The login function.  Essentially wraps the web client's request to https://secure.accessacs.com/access/login.ashx
 		 *
@@ -35,9 +36,11 @@ namespace Tenth {
 		 * @param string $password The user's password.
 		 * @param bool $detailed Whether the result set should contain detailed results, in the form of AccessPersonDetailed objects.
 		 * @param int|string $site The site ID to use for ACS.  Defaults to Tenth's site ID, which is 91460.
+		 *
 		 * @return false|AccessPerson[]|AccessPersonDetailed[] An array of AccessPerson or AccessPersonDetailed objects, or false if the password is wrong.
 		 *
 		 * @throws AccessException Thrown if detailed results are requested but individuals can't be disambiguated to align information properly.
+		 * @throws \GuzzleHttp\Exception\GuzzleException
 		 */
 		public static function login($email, $password, $detailed = false, $site = 91460)
 		{

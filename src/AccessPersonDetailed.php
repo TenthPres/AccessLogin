@@ -5,8 +5,24 @@ namespace Tenth\AccessLogin {
 	/**
 	 * Used as a container for the return objects of the login function.
 	 *
-	 * Class AccessPerson
+	 * @class AccessPerson
 	 * @package Tenth\AccessLogin
+	 *
+	 * @property-read string PhotoUrl
+	 * @property-read string Title
+	 * @property-read string FirstName
+	 * @property-read string MiddleName
+	 * @property-read string GoesByName
+	 * @property-read string LastName
+	 * @property-read string Suffix
+	 * @property-read string Gender
+	 * @property-read string FamilyPosition
+	 * @property-read string DateAdded
+	 * @property-read string DateLastChanged
+	 * @property-read string MaritalStatus
+	 * @property-read string MemberStatus
+	 * @property-read string DateJoined
+	 * @property-read string Active
 	 */
 	class AccessPersonDetailed extends AccessPerson
 	{
@@ -80,7 +96,7 @@ namespace Tenth\AccessLogin {
 				preg_match_all("/<label>[\\W]*([\\w\\d ]+)[\\W]*:<\\/label>\\W*(<span[\\w\"= ]+>)?([\\w\\d \\/\\.]*)\\W*(<\\/span|\\&nbsp;)/mU", $profilePage, $matches);
 
 				foreach ($matches[1] as $i => $k)
-					$r[$k] = $matches[3][$i];
+					$r[ucwords($k)] = $matches[3][$i];
 
 				$this->_profileData = $r;
 				$this->_hasLoadedProfile = true;
