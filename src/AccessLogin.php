@@ -132,7 +132,7 @@ namespace Tenth {
 				$profileBody = $profilePage->getBody();
 
 				// get id numbers for each member of the family.
-				preg_match_all('/viewperson.aspx\?indvid=(\d+)">([\sA-z\.]+)<\/a>/', $profileBody, $matches, PREG_PATTERN_ORDER);
+				preg_match_all('/viewperson.aspx\?indvid=(\d+)">([\sA-z\.\(\)]+)<\/a>/', $profileBody, $matches, PREG_PATTERN_ORDER);
 				// $matches[1] is an array of the IDs
 				// $matches[2] is an array of the full names of the individuals.
 
