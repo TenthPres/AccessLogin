@@ -144,7 +144,14 @@ namespace Tenth {
 				foreach ($r as &$person) {
 					foreach ($matches[2] as $k => $name) {
 						if ($name === $person->FullName) {
+							// most cases
 							$person->IndividualId = intval($matches[1][$k]);
+						} elseif (strpos($name, '(') > 0 && strpos($name, ')') > 0) {
+							// the specific case in which a user has a goes-by name.
+							// Note that these names take the form "First(Nick) Last" with an apparent missing space.
+							$name = preg_split( "/(\(|\))/", $name);
+							if ($person->FullName === $name[0] . $name[2])
+								$person->IndividualId = intval($matches[1][$k]);
 						}
 					}
 				}
