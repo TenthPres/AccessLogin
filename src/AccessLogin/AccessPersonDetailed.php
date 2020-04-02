@@ -91,7 +91,7 @@ namespace Tenth\AccessLogin {
 
 				$r = [];
 				$r['PhotoUrl'] = preg_match("/<img id=\"ctl00_ctl00_cphMain_cphSubMenu_ucIndvInfo_imgIndvPict\" src=\"([\\w:\\/.]*)/", $profilePage, $matches) ? $matches[1] : null;
-
+				$r['PhotoUrl'] = str_replace("../../", "https://secure.accessacs.com/access/", $r['PhotoUrl']); // Returns default image when no user image is available.
 
 				preg_match_all("/<label>[\\W]*([\\w\\d ]+)[\\W]*:<\\/label>\\W*(<span[\\w\"= ]+>)?([\\w\\d \\/\\.]*)\\W*(<\\/span|\\&nbsp;)/mU", $profilePage, $matches);
 

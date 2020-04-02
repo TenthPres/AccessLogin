@@ -1,6 +1,11 @@
 Access Login
 ============
 
+[![Travis (.org)](https://img.shields.io/travis/tenthpres/accesslogin?label=tests&style=flat-square)](https://travis-ci.org/TenthPres/AccessLogin)
+[![PHP from Travis config](https://img.shields.io/travis/php-v/tenthpres/accesslogin?style=flat-square)](composer.json#L39)
+[![Coveralls github](https://img.shields.io/coveralls/github/TenthPres/AccessLogin?style=flat-square)](https://coveralls.io/github/TenthPres/AccessLogin)
+<!--![GitHub](https://img.shields.io/github/license/tenthpres/accesslogin?style=flat-square) -->
+
 This library was originally created for integration into our public WiFi system, allowing credentialed members and regular attenders to gain WiFi Access.
 
 This library has none of the WiFi connecting features, but is simply a wrapper for interfacing with ACS Church software.  By passing the library a user email and password, the library then authenticates against the ACS web server, and returns user information through the library. 

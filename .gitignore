@@ -1,6 +1,6 @@
 vendor/
 composer.lock
-/tests/AccessLoginRealData.test.php
+/tests/credentials.json
 
 
 # Typical PHPStorm stuff:
@@ -9,5 +9,3 @@ composer.lock
 **.iws
 
 .idea/deployment.xml
-
-/index.php
