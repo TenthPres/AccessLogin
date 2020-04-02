@@ -65,14 +65,14 @@ class AccessLoginTests extends TestCase {
 	public function test_realInfoInit()
 	{
 		self::$__userA = AccessLogin::login(self::getEmail(), self::getPassword());
-		$this->assertInternalType('array', self::$__userA);
+		$this->assertSame('array', gettype(self::$__userA));
 	}
 
 
 	public function test_detailed_realInfoInit()
 	{
 		self::$__userB = AccessLogin::login(self::getEmail(), self::getPassword(), true);
-		$this->assertInternalType('array', self::$__userB);
+		$this->assertSame('array', gettype(self::$__userB));
 	}
 
 
@@ -81,7 +81,7 @@ class AccessLoginTests extends TestCase {
 	 */
 	public function test_detailed_getAvailableFields_type()
 	{
-		$this->assertInternalType('array', self::$__userB[0]->getAvailableFields());
+		$this->assertSame('array', gettype(self::$__userB[0]->getAvailableFields()));
 	}
 
 
@@ -108,7 +108,7 @@ class AccessLoginTests extends TestCase {
 	 */
 	public function test_detailed_getFirstName()
 	{
-		$this->assertInternalType("string", self::$__userB[0]->FirstName);
+		$this->assertSame("string", gettype(self::$__userB[0]->FirstName));
 	}
 
 
